@@ -25,6 +25,12 @@ class _ExploreShopPageState extends State<ExploreShopPage> {
 
   int _page = 1;
 
+  @override
+  void initState() {
+    super.initState();
+    _request();
+  }
+
   ok(String result) {
     setState(() {
       if (1 == _page) {
