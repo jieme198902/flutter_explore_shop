@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

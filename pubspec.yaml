@@ -31,7 +31,7 @@ dependencies:
 
   oktoast: ^2.1.4
   flutter_screenutil: ^0.5.1
-
+  flutter_easyrefresh: ^1.2.7
 
 dev_dependencies:
   flutter_test:
