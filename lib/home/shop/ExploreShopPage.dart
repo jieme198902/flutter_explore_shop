@@ -76,11 +76,9 @@ class _ExploreShopPageState extends State<ExploreShopPage> {
               }),
           onRefresh: () async {
             _page = 1;
-            print('onrefresh');
             _request();
           },
           loadMore: () async {
-            print('loadMore');
             _request();
           },
         ),

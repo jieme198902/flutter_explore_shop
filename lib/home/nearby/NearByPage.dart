@@ -1,3 +1,4 @@
+import 'package:amap_location/amap_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
@@ -26,11 +27,25 @@ class _NearByPageState extends State<NearByPage> {
   List<PoiBean> _data = List();
 
   int _page = 1;
+  double lat;
+  double lng;
 
   @override
   void initState() {
     super.initState();
-    _request();
+    AMapLocationClient.startup(new AMapLocationOption(
+        desiredAccuracy: CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
+
+    AMapLocationClient.onLocationUpate.listen((AMapLocation loc) {
+      if (!mounted) return;
+      setState(() {
+        lat = loc.latitude;
+        lng = loc.longitude;
+      });
+      _request();
+    });
+
+    AMapLocationClient.startLocation();
   }
 
   ok(String result) {
@@ -47,8 +62,12 @@ class _NearByPageState extends State<NearByPage> {
 
   ///请求
   _request() {
-    Utils().requestPost(findPoiList,
-        {'page': _page.toString(), 'size': '20'}).then(ok, onError: (e) {});
+    Utils().requestPost(findPoiList, {
+      'page': _page.toString(),
+      'size': '20',
+      'lat': lat.toString(),
+      'lng': lng.toString()
+    }).then(ok, onError: (e) {});
   }
 
   @override
@@ -74,11 +93,9 @@ class _NearByPageState extends State<NearByPage> {
             }),
         onRefresh: () async {
           _page = 1;
-          print('onrefresh');
           _request();
         },
         loadMore: () async {
-          print('loadMore');
           _request();
         },
       ),

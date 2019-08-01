@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:amap_location/amap_location.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +8,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'common/Constant.dart';
 import 'common/Utils.dart';
-import 'common/page/PoiDetail.dart';
 import 'home/Home.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  AMapLocationClient.setApiKey('0bc36bf5c1df67024b8b477fe3d36d49');
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
