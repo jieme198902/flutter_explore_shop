@@ -16,13 +16,13 @@ class ExploreShopPage extends StatefulWidget {
 ///
 class _ExploreShopPageState extends State<ExploreShopPage> {
   GlobalKey<EasyRefreshState> _easyRefreshKey =
-      new GlobalKey<EasyRefreshState>();
+  new GlobalKey<EasyRefreshState>();
 
   //
   GlobalKey<RefreshHeaderState> _headerKey =
-      new GlobalKey<RefreshHeaderState>();
+  new GlobalKey<RefreshHeaderState>();
   GlobalKey<RefreshFooterState> _footerKey =
-      new GlobalKey<RefreshFooterState>();
+  new GlobalKey<RefreshFooterState>();
 
   List<PoiBean> _data = List();
 
@@ -85,7 +85,7 @@ class _ExploreShopPageState extends State<ExploreShopPage> {
           },
         ),
         Positioned(
-            child: Container(
+            child: Listener(child: Container(
               width: 50,
               height: 50,
               padding: EdgeInsets.all(10),
@@ -94,9 +94,11 @@ class _ExploreShopPageState extends State<ExploreShopPage> {
                   color: Colors.black45,
                   shape: BoxShape.circle,
                   image:
-                      DecorationImage(image: AssetImage('images/fabiao.png')),
+                  DecorationImage(image: AssetImage('images/fabiao.png')),
                   border: Border.all(color: Colors.blue, width: 2.0)),
-            ),
+            ), onPointerDown: (event) {
+              print('发布');
+            },),
             right: 15,
             bottom: 15)
       ],
