@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'common/Constant.dart';
 import 'common/Utils.dart';
+import 'common/page/PoiDetail.dart';
 import 'home/Home.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '探店',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -29,14 +31,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SplashStatefulWidget(),
-      routes: {'/a': (BuildContext context) => Home()},
+
+      ///构建路由信息
+      routes: {
+        'home': (BuildContext context) => Home(),
+      },
     );
   }
 }
 
-/**
- * 状态可变的view
- */
+///状态可变的view
 class SplashStatefulWidget extends StatefulWidget {
   SplashStatefulWidget({Key key}) : super(key: key);
 
@@ -59,6 +63,7 @@ class SplashStatefulWidget extends StatefulWidget {
 class _SplashState extends State<SplashStatefulWidget> {
   var _imgUrl = 'unknown';
 
+  ///banner请求成功
   ok(String result) {
     var wangkResponse = jsonDecode(result);
 
@@ -66,18 +71,17 @@ class _SplashState extends State<SplashStatefulWidget> {
       _imgUrl = wangkResponse['data'][0]['bannerImg'];
     });
 
-    new Future.delayed(const Duration(seconds: 1),
-        () => Navigator.of(context).pushNamed("/a"));
+    ///延迟跳转到home页
+    new Future.delayed(
+        const Duration(seconds: 1),
+        () => Navigator.pushNamedAndRemoveUntil(
+            context, 'home', (router) => router == null));
   }
 
   ///下划线私有方法；获取banner列表
   _getBanner() async {
-    Utils().requestPost("/explore-shop/api/business/findBanner",
-        {'bannerType': '0'}).then(ok, onError: (e) {
-      print('resp--> ' + e.toString());
-      new Future.delayed(const Duration(seconds: 1),
-              () => Navigator.of(context).pushNamed("/a"));
-    });
+    Utils()
+        .requestPost(findBanner, {'bannerType': '0'}).then(ok, onError: (e) {});
   }
 
   @override
