@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///我的
 class MinePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _MinePageState();
@@ -9,16 +10,8 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('我的'),
-          actions: <Widget>[new Container()],
-        ),
-        body: new Center(
-          child: null,
-        ),
-      ),
+    return Center(
+      child: null,
     );
   }
 }

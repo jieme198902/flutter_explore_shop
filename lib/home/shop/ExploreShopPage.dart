@@ -54,43 +54,52 @@ class _ExploreShopPageState extends State<ExploreShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('探店'),
-          actions: <Widget>[new Container()],
-        ),
-        body: new Center(
-          child: new EasyRefresh(
-            key: _easyRefreshKey,
-            behavior: ScrollBehavior(),
-            refreshHeader: MaterialHeader(
-              key: _headerKey,
-            ),
-            refreshFooter: ClassicsFooter(
-              key: _footerKey,
-              bgColor: Colors.transparent,
-              textColor: Colors.black87,
-              moreInfoColor: Colors.black54,
-              showMore: true,
-            ),
-            child: new ListView.builder(
-                itemCount: _data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return getPoiItem(context, _data[index], index);
-                }),
-            onRefresh: () async {
-              _page = 1;
-              print('onrefresh');
-              _request();
-            },
-            loadMore: () async {
-              print('loadMore');
-              _request();
-            },
+    return Stack(
+      children: <Widget>[
+        EasyRefresh(
+          key: _easyRefreshKey,
+          behavior: ScrollBehavior(),
+          refreshHeader: MaterialHeader(
+            key: _headerKey,
           ),
+          refreshFooter: ClassicsFooter(
+            key: _footerKey,
+            bgColor: Colors.transparent,
+            textColor: Colors.black87,
+            moreInfoColor: Colors.black54,
+            showMore: true,
+          ),
+          child: new ListView.builder(
+              itemCount: _data.length,
+              itemBuilder: (BuildContext context, int index) {
+                return getPoiItem(context, _data[index], index);
+              }),
+          onRefresh: () async {
+            _page = 1;
+            print('onrefresh');
+            _request();
+          },
+          loadMore: () async {
+            print('loadMore');
+            _request();
+          },
         ),
-      ),
+        Positioned(
+            child: Container(
+              width: 50,
+              height: 50,
+              padding: EdgeInsets.all(10),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.black45,
+                  shape: BoxShape.circle,
+                  image:
+                      DecorationImage(image: AssetImage('images/fabiao.png')),
+                  border: Border.all(color: Colors.blue, width: 2.0)),
+            ),
+            right: 15,
+            bottom: 15)
+      ],
     );
   }
 }
