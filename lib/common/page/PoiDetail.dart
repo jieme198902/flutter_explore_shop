@@ -5,28 +5,44 @@ import 'package:flutter_explore_shop/common/bean/PoiBean.dart';
 
 ///Poi详情
 class PoiDetail extends StatefulWidget {
-  PoiBean bean;
+  var beanStr;
 
-  PoiDetail(PoiBean bean) {
-    this.bean = bean;
-    print('ss--> ' + json.encode(bean));
-  }
+  PoiDetail({Key key, this.beanStr}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _PoiDetailState(bean);
+    return _PoiDetailState();
   }
 }
 
 class _PoiDetailState extends State<PoiDetail> {
-  PoiBean bean;
-
-  _PoiDetailState(PoiBean bean) {
-    this.bean = bean;
+  _menu() {
+    print('menu');
   }
 
+  ///
   @override
   Widget build(BuildContext context) {
-    return Text(json.encode(bean),style: TextStyle(fontSize: 10),);
+    PoiBean bean = PoiBean.fromJson(jsonDecode(widget.beanStr));
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(bean.poiName),
+        actions: <Widget>[
+          Container(
+              child: InkWell(
+            child: Image.asset(
+              'images/caidan.png',
+              width: 40,
+              height: 40,
+            ),
+            onTap: _menu,
+          )),
+        ],
+      ),
+      body: Center(
+        child: Text(jsonEncode(bean)),
+      ),
+    );
   }
 }

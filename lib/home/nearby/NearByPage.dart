@@ -1,4 +1,4 @@
-import 'package:amap_location/amap_location.dart';
+//import 'package:amap_location/amap_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
@@ -33,19 +33,19 @@ class _NearByPageState extends State<NearByPage> {
   @override
   void initState() {
     super.initState();
-    AMapLocationClient.startup(new AMapLocationOption(
-        desiredAccuracy: CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
-
-    AMapLocationClient.onLocationUpate.listen((AMapLocation loc) {
-      if (!mounted) return;
-      setState(() {
-        lat = loc.latitude;
-        lng = loc.longitude;
-      });
-      _request();
-    });
-
-    AMapLocationClient.startLocation();
+//    AMapLocationClient.startup(new AMapLocationOption(
+//        desiredAccuracy: CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
+//
+//    AMapLocationClient.onLocationUpate.listen((AMapLocation loc) {
+//      if (!mounted) return;
+//      setState(() {
+//        lat = loc.latitude;
+//        lng = loc.longitude;
+//      });
+//      _request();
+//    });
+//
+//    AMapLocationClient.startLocation();
   }
 
   ok(String result) {
@@ -65,8 +65,8 @@ class _NearByPageState extends State<NearByPage> {
     Utils().requestPost(findPoiList, {
       'page': _page.toString(),
       'size': '20',
-      'lat': lat.toString(),
-      'lng': lng.toString()
+//      'lat': lat.toString(),
+//      'lng': lng.toString()
     }).then(ok, onError: (e) {});
   }
 

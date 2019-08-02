@@ -32,7 +32,7 @@ dependencies:
   oktoast: ^2.1.4
   flutter_screenutil: ^0.5.1
   flutter_easyrefresh: ^1.2.7
-  amap_location:
+#  amap_location:
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +54,7 @@ flutter:
   assets:
     - images/moren.png
     - images/fabiao.png
+    - images/caidan.png
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 

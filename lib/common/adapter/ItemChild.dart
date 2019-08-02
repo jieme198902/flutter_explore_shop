@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_explore_shop/common/bean/PoiBean.dart';
@@ -6,9 +8,8 @@ import 'package:flutter_explore_shop/common/page/PoiDetail.dart';
 Widget getPoiItem(BuildContext context, PoiBean bean, int index) {
   return InkWell(
       onTap: () => {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return PoiDetail(bean);
-            }))
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => PoiDetail(beanStr: json.encode(bean))))
           },
       child: Column(
         children: <Widget>[

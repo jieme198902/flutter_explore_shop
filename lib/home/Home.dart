@@ -86,14 +86,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       },
     );
 
-    return new DefaultTabController(
-        length: _pageList.length,
-        child: new Scaffold(
-          /// 动态的展示我们当前的页面
-          body: new Center(child: _currentPage),
+    return new MaterialApp(
+      home: new Scaffold(
+        /// 动态的展示我们当前的页面
+        body: new Center(child: _currentPage),
 
-          /// 底部工具栏
-          bottomNavigationBar: bottomNavigationBar,
-        ));
+        /// 底部工具栏
+        bottomNavigationBar: bottomNavigationBar,
+      ),
+      theme: new ThemeData(
+        primarySwatch: Colors.blue, // 设置主题颜色
+      ),
+    );
   }
 }

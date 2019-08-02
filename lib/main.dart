@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:amap_location/amap_location.dart';
+//import 'package:amap_location/amap_location.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ import 'common/Utils.dart';
 import 'home/Home.dart';
 
 void main() {
-  AMapLocationClient.setApiKey('0bc36bf5c1df67024b8b477fe3d36d49');
+//  AMapLocationClient.setApiKey('0bc36bf5c1df67024b8b477fe3d36d49');
   runApp(MyApp());
 }
 
